@@ -1,17 +1,19 @@
 import React, {useContext, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Authcontext } from '../../../context/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-
+    const navigate=useNavigate();
     const { LoginProvider } = useContext(Authcontext);
     const provider = new GoogleAuthProvider();
     const { userLogin} = useContext(Authcontext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const location  = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleEmail = (event) => {
         setEmail(event.target.value)
@@ -24,6 +26,7 @@ const Login = () => {
         userLogin(email, password)
         .then((res=>{
             Swal.fire("Login successfull!");
+            navigate(from, {replace:true});
         }))
         .catch((error=>{
             setError(error.errorMessage)
@@ -32,12 +35,11 @@ const Login = () => {
     const handleLoginProvider = () => {
         LoginProvider(provider)
             .then((result) => {
-                const user = result.user;
-                console.log(user)
+                navigate(from, {replace:true});
             }).catch((error) => {
 
                 const errorMessage = error.message;
-                console.log(errorMessage)
+                setError(errorMessage)
             });
     }
 
