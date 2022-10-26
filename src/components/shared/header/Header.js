@@ -6,20 +6,21 @@ import { Authcontext } from '../../../context/AuthProvider/AuthProvider';
 
 
 const Header = () => {
-const {LoginProvider} = useContext(Authcontext);
+const {LoginProvider, user} = useContext(Authcontext);
     const provider = new GoogleAuthProvider();
 
-    LoginProvider(provider)
-    .then((result) => {
-       
-        const user = result.user;
-        console.log(user)
-      }).catch((error) => {
-        // Handle Errors here.
-       
-        const errorMessage = error.message;
-       console.log(errorMessage)
-      });
+    const handleLoginProvider = () =>{
+        LoginProvider(provider)
+        .then((result) => {
+            const user = result.user;
+            console.log(user)
+          }).catch((error) => {
+           
+            const errorMessage = error.message;
+           console.log(errorMessage)
+          });
+    }
+
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -46,10 +47,10 @@ const {LoginProvider} = useContext(Authcontext);
                 <div className="navbar-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <image src="https://placeimg.com/80/80/people" />
+                                <image src={user?.photoURL} />
                             </div>
                         </label>
-                    <Link onClick={LoginProvider} className="btn">Log Out</Link>
+                    <Link onClick={handleLoginProvider} className="btn">Log Out</Link>
                 </div>
             </div>
         </div>

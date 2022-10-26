@@ -6,6 +6,8 @@ import PopularCourses from "../pages/home/PopularCourses";
 import AllCourses from "../pages/courses/AllCourses";
 import Blog from "../pages/blog/Blog";
 import FAQ from "../pages/faq/FAQ";
+import Login from "../pages/login/Login"
+import Register from "../pages/login/Register";
 
 export const router = createBrowserRouter([
         {
@@ -34,7 +36,11 @@ export const router = createBrowserRouter([
                 },
                 {
                     path: '/login',
-                    
+                    element: <Login></Login>
+                },
+                {
+                    path: '/register',
+                    element: <Register></Register>
                 }
             ]
         }
