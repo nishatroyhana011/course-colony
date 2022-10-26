@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Authcontext } from '../../../context/AuthProvider/AuthProvider';
 
 const Register = () => {
-    const { createUser} = useContext(Authcontext);
+    const { createUser, userUpdate} = useContext(Authcontext);
     const [name, setName] = useState('');
     const [photo, setPhoto] = useState('');
     const [email, setEmail] = useState('');
@@ -30,24 +30,27 @@ const Register = () => {
             setError('please Enter password containing 8 charactars or more')
         }  
     }
-    const handleRegister = ()=>{
-        
+    const handleRegister = (event)=>{
+        event.preventDefault();
         if(name && photo && email && password){
             createUser(email, password)
             .then((res)=>{
-                const user = res.user;
-                console.log(user)
+                //const user = res.user;
+                userUpdate(name, photo)
             })
             .catch((error)=>{
                 console.log(error.errorMessage)
             })
+        }else{
+            setError('Email or password missing')
         }
     }
     
     return (
-        <div>
-            <p className='text-danger'>{error}</p>
-            <div className='mx-auto container bg-slate-400' action="">
+        <form>
+            <p className='text-info font-semibold text-2xl m-5'>Registration form</p>
+            <p className='text-red-600'>{error}</p>
+            <div className='mx-auto container' action="">
                 <div className="form-control mx-auto  w-full max-w-xs">
                     <label className="label">
                         <span className="label-text">Your full name</span>
@@ -74,8 +77,8 @@ const Register = () => {
                 </div>
                 <button onClick={handleRegister} className="btn btn-info mx-auto my-5">Register</button>
             </div>
-            <p className='text-danger'>Already have an account? Please <Link to='/login'>Login</Link></p>
-        </div>
+            <p className='text-red-600'>Already have an account? Please <Link to='/login'>Login</Link></p>
+        </form>
     );
 };
 
