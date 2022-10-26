@@ -42,7 +42,7 @@ const Register = () => {
                 console.log(error.errorMessage)
             })
         }else{
-            setError('Email or password missing')
+            setError('All info needed')
         }
     }
     
@@ -77,7 +77,7 @@ const Register = () => {
                 </div>
                 <button onClick={handleRegister} className="btn btn-info mx-auto my-5">Register</button>
             </div>
-            <p className='text-red-600'>Already have an account? Please <Link to='/login'>Login</Link></p>
+            <p className='text-red-600'>Already have an account? Please <Link className='text-xl' to='/login'>Login</Link></p>
         </form>
     );
 };

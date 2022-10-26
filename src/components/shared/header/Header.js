@@ -1,24 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { GoogleAuthProvider } from "firebase/auth";
-import { useContext } from 'react';
 import { Authcontext } from '../../../context/AuthProvider/AuthProvider';
 
 
 const Header = () => {
-const {LoginProvider, user} = useContext(Authcontext);
-    const provider = new GoogleAuthProvider();
-
-    const handleLoginProvider = () =>{
-        LoginProvider(provider)
-        .then((result) => {
-            const user = result.user;
-            console.log(user)
-          }).catch((error) => {
-           
-            const errorMessage = error.message;
-           console.log(errorMessage)
-          });
+    const { user, logOut } = useContext(Authcontext);
+    const handleLogOut = () => {
+        logOut()
+        .then(()=>{})
+        .catch( error => console.log(error))
     }
 
     return (
@@ -42,15 +32,26 @@ const {LoginProvider, user} = useContext(Authcontext);
                         <li><Link to='/courses'>Courses</Link></li>
                         <li><Link to='/blog'>Blog</Link></li>
                         <li><Link to='/faq'>FAQ</Link></li>
+                        
                     </ul>
                 </div>
                 <div className="navbar-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <image src={user?.photoURL} />
-                            </div>
-                        </label>
-                    <Link onClick={handleLoginProvider} className="btn">Log Out</Link>
+
+                    {
+                        user?.uid ?
+                            <>
+                                <div className="avatar tooltip tooltip-left" data-tip={user?.displayName}>
+                                    <div className="w-12 mx-2 rounded-full ring ring-primary">
+                                        <img src={user.photoURL} />
+                                    </div>
+                                </div>
+                                <button className='btn btn-outline' onClick={handleLogOut}>Log out</button>
+                            </>
+                            :
+                            <>
+                            <button className='btn btn-outline'><Link to='/login'>Login</Link></button>    
+                            </>
+                    }
                 </div>
             </div>
         </div>
