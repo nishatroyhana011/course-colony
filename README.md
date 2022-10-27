@@ -8,13 +8,12 @@
 * Home, Courses, blog, Faq, LOgin/registration section
 * React router for loading API data. 
 * Generate dynamic url via clicking specific topic
-* Right/wrong answer notification using toast
-* Barchart of number on quizes
-* Active route
+* Google, facebook and email vaarification
+* Private route
+* Theme toggle
 * Responsive design
 
 # External library:
 * tailwind css
 * DaisyUI
-* FontAwesome Icon
-* Rechart
+* 
