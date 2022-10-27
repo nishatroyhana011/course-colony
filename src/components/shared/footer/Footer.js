@@ -1,10 +1,13 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { themeContext } from '../../../context/theme/ThemeProvider';
 
 const Footer = () => {
+    const { isChecked } = useContext(themeContext);
     return (
         <div>
-            <footer className="footer p-10 bg-base-200 text-base-content">
+            <footer className={`footer p-10 text-base-content ${isChecked ? 'Dark' : 'Light'}`}>
                 <div>
                     <span className="footer-title">Company</span>
                     <Link className="link link-hover">About us</Link>

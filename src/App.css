@@ -2,12 +2,23 @@
   text-align: center;
 }
 .Dark{
-  background-color: #282c34;
+  background-color: #3a3f49;
+  color: azure;
 }
 .Light{
-  background-color: cornsilk;
+  background-color: rgb(242, 240, 240);
+  color: #282c34;
 }
-
+.btn-Dark{
+  background-color: rgb(84, 199, 84);
+  color:whitesmoke;
+  border-color: rgb(84, 199, 84);
+}
+.btn-Light{
+  background-color: rgb(115, 31, 241);
+  color: white;
+  border-color: rgb(115, 31, 241);
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

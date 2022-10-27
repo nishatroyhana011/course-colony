@@ -22,7 +22,7 @@ const Header = () => {
 
     return (
         <div className=''>
-            <div className={`navbar ${isChecked ? 'bg-slate-400' : 'bg-red-300'}`}>
+            <div className={`navbar ${isChecked ? 'Dark' : 'Light'}`}>
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -34,6 +34,7 @@ const Header = () => {
                             <li><Link to='/faq'>FAQ</Link></li>
                         </ul>
                     </div>
+                    <img src="../../../logo.png" alt="" />
                     <Link to='/' className="btn btn-ghost normal-case text-xl">Course Colony</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -54,11 +55,11 @@ const Header = () => {
                                         <img src={user.photoURL} />
                                     </div>
                                 </div>
-                                <button className='btn btn-outline btn-primary' onClick={handleLogOut}>Log out</button>
+                                <button className= {`btn btn-outline ${isChecked ? 'btn-Dark' : 'btn-Light'}`} onClick={handleLogOut}>Log out</button>
                             </>
                             :
                             <>
-                                <button className='btn btn-outline btn-primary'><Link to='/login'>Login</Link></button>
+                                <button className={`btn btn-outline ${isChecked ? 'btn-Dark' : 'btn-Light'}`}><Link to='/login'>Login</Link></button>
                             </>
                     }
                 </div>
