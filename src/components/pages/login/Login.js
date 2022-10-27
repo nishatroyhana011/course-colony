@@ -1,18 +1,19 @@
-import React, {useContext, useState} from 'react';
-import { Link, useNavigate, useLocation} from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Authcontext } from '../../../context/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from "firebase/auth";
+import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-    const navigate=useNavigate();
-    const { LoginProvider } = useContext(Authcontext);
+    const navigate = useNavigate();
+    const { LoginProvider, FBLoginProvider } = useContext(Authcontext);
     const provider = new GoogleAuthProvider();
-    const { userLogin} = useContext(Authcontext);
+    const fbProvider = new FacebookAuthProvider();
+    const { userLogin } = useContext(Authcontext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const location  = useLocation();
+    const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
     const handleEmail = (event) => {
@@ -21,21 +22,31 @@ const Login = () => {
     const handlePassword = (event) => {
         setPassword(event.target.value)
     }
-    const handleLogin = (event)=>{
+    const handleLogin = (event) => {
         event.preventDefault();
         userLogin(email, password)
-        .then((res=>{
-            Swal.fire("Login successfull!");
-            navigate(from, {replace:true});
-        }))
-        .catch((error=>{
-            setError(error.errorMessage)
-        }))
+            .then((res => {
+                Swal.fire("Login successfull!");
+                navigate(from, { replace: true });
+            }))
+            .catch((error => {
+                setError(error.errorMessage)
+            }))
     }
     const handleLoginProvider = () => {
         LoginProvider(provider)
             .then((result) => {
-                navigate(from, {replace:true});
+                navigate(from, { replace: true });
+            }).catch((error) => {
+
+                const errorMessage = error.message;
+                setError(errorMessage)
+            });
+    }
+    const handleFBLoginProvider = () => {
+        FBLoginProvider(fbProvider)
+            .then((result) => {
+                navigate(from, { replace: true });
             }).catch((error) => {
 
                 const errorMessage = error.message;
@@ -46,7 +57,7 @@ const Login = () => {
     return (
         <div>
             <form>
-                <p className='text-info font-semibold text-2xl m-5'>Login Form</p>
+                <p className='text-primary font-semibold text-2xl m-5'>Login Form</p>
                 <p className='text-red-600'>{error}</p>
                 <div className='mx-auto container' action="">
                     <div className="form-control mx-auto  w-full max-w-xs">
@@ -61,12 +72,18 @@ const Login = () => {
                         </label>
                         <input onBlur={handlePassword} type="password" placeholder="Type here" className="input input-bordered w-full max-w-xs" required />
                     </div>
-                    <button onClick={handleLogin} className="btn btn-info mx-auto my-5">Login</button>
+                    <button onClick={handleLogin} className="btn btn-outline btn-primary mx-auto my-5">Login</button>
                 </div>
                 <p className='text-red-600'>Don't have an account? Please <Link className='text-xl' to='/register'>Register</Link></p>
             </form>
             <br />
-            <button onClick={handleLoginProvider} className="btn">Sign in with Google</button>
+            <div className="flex flex-col w-full border-opacity-50">
+                
+                <div className="divider">OR</div>
+                
+            </div>
+            <button onClick={handleLoginProvider} className="btn btn-outline btn-primary mx-2">Sign in with Google</button>
+            <button onClick={handleFBLoginProvider} className="btn btn-outline btn-primary mx-2">Sign in with Facebook</button>
         </div>
     );
 };

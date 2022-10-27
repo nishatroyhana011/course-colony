@@ -45,11 +45,11 @@ const Header = () => {
                                         <img src={user.photoURL} />
                                     </div>
                                 </div>
-                                <button className='btn btn-outline' onClick={handleLogOut}>Log out</button>
+                                <button className='btn btn-outline btn-primary' onClick={handleLogOut}>Log out</button>
                             </>
                             :
                             <>
-                            <button className='btn btn-outline'><Link to='/login'>Login</Link></button>    
+                            <button className='btn btn-outline btn-primary'><Link to='/login'>Login</Link></button>    
                             </>
                     }
                 </div>

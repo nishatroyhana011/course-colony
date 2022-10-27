@@ -12,7 +12,10 @@ const AuthProvider = ({children}) => {
         setLoader(true)
         return signInWithPopup(auth, provider);
     }
-
+    const FBLoginProvider = (fbProvider) =>{
+        setLoader(true)
+        return signInWithPopup(auth, fbProvider)
+    }
     const createUser = (email, password) =>{
         setLoader(true)
         return createUserWithEmailAndPassword(auth, email, password)
@@ -49,7 +52,7 @@ const AuthProvider = ({children}) => {
         return signOut(auth);
     }
 
-    const authInfo = { user,loader, LoginProvider, createUser, userUpdate, userLogin, logOut};
+    const authInfo = { user,loader, LoginProvider, createUser, userUpdate, userLogin, FBLoginProvider, logOut};
    
     return (
         <Authcontext.Provider value={authInfo}>
