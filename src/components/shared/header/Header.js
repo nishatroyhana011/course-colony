@@ -1,19 +1,28 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Authcontext } from '../../../context/AuthProvider/AuthProvider';
-
+import { themeContext } from '../../../context/theme/ThemeProvider';
 
 const Header = () => {
     const { user, logOut } = useContext(Authcontext);
+    const { isChecked, setIsChecked} = useContext(themeContext);
+
     const handleLogOut = () => {
         logOut()
-        .then(()=>{})
-        .catch( error => console.log(error))
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
+    const handleCheck = (event)=>{
+        if(event.target.checked){
+            setIsChecked(true)
+        }else{
+            setIsChecked(false)
+        }
     }
 
     return (
-        <div>
-            <div className="navbar bg-base-100">
+        <div className=''>
+            <div className={`navbar ${isChecked ? 'bg-slate-400' : 'bg-red-300'}`}>
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -32,7 +41,7 @@ const Header = () => {
                         <li><Link to='/courses'>Courses</Link></li>
                         <li><Link to='/blog'>Blog</Link></li>
                         <li><Link to='/faq'>FAQ</Link></li>
-                        
+
                     </ul>
                 </div>
                 <div className="navbar-end">
@@ -49,9 +58,12 @@ const Header = () => {
                             </>
                             :
                             <>
-                            <button className='btn btn-outline btn-primary'><Link to='/login'>Login</Link></button>    
+                                <button className='btn btn-outline btn-primary'><Link to='/login'>Login</Link></button>
                             </>
                     }
+                </div>
+                <div className=''>
+                <input onClick={handleCheck} type="checkbox" className="toggle" />
                 </div>
             </div>
         </div>

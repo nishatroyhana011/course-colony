@@ -1,6 +1,12 @@
 .App {
   text-align: center;
 }
+.Dark{
+  background-color: #282c34;
+}
+.Light{
+  background-color: cornsilk;
+}
 
 .App-logo {
   height: 40vmin;

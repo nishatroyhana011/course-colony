@@ -1,8 +1,10 @@
-import React from 'react';
+import React ,{useContext} from 'react';
+import { themeContext } from '../../../context/theme/ThemeProvider';
 
 const Blog = () => {
+    const { isChecked } = useContext(themeContext);
     return (
-        <div>
+        <div className={`${isChecked ? 'Dark' : 'Light' }`}>
             <div className='flex h-32 bg-slate-100 justify-around items-center'>
                 <p className='text-2xl text-purple-800 font-semibold'>Blog Section</p>
             </div>
