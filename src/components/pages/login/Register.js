@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { Authcontext } from '../../../context/AuthProvider/AuthProvider';
 
 const Register = () => {
@@ -35,7 +36,7 @@ const Register = () => {
         if(name && photo && email && password){
             createUser(email, password)
             .then((res)=>{
-                //const user = res.user;
+                Swal.fire("You can Login now")
                 userUpdate(name, photo)
             })
             .catch((error)=>{

@@ -31,27 +31,31 @@ const Login = () => {
             }))
             .catch((error => {
                 setError(error.errorMessage)
+                Swal.fire('Email address or password missmatched')
             }))
     }
     const handleLoginProvider = () => {
         LoginProvider(provider)
             .then((result) => {
+                Swal.fire("Login successfull!");
                 navigate(from, { replace: true });
             }).catch((error) => {
 
                 const errorMessage = error.message;
                 setError(errorMessage)
-            });
+        });
     }
+
     const handleFBLoginProvider = () => {
         FBLoginProvider(fbProvider)
             .then((result) => {
+                Swal.fire("Login successfull!");
                 navigate(from, { replace: true });
             }).catch((error) => {
 
                 const errorMessage = error.message;
                 setError(errorMessage)
-            });
+        });
     }
 
     return (
