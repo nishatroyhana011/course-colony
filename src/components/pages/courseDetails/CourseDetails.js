@@ -19,7 +19,7 @@ const CourseDetails = () => {
             <div>
                 <img className='block mx-auto my-10 rounded-lg' src={course.thumbnail_url} alt="" />
             </div>
-            <div className='flex justify-around'>
+            <div className='flex justify-around mx-auto'>
                 <div className='flex items-center'>
                     <img className="w-12 m-5 rounded-full" src={course.author?.img} />
                     <div className=''>
@@ -34,7 +34,7 @@ const CourseDetails = () => {
                     <p>Number of students: {course.enrolled_students}</p>
                 </div>
             </div>
-            <div className='w-full h-auto' ref={ref}>
+            <div className='mx-auto' ref={ref}>
                 <div className='my-10'>
                     <p>Course Name: {course.title}</p>
                     <p>About Course: {course.description}</p>
@@ -42,7 +42,7 @@ const CourseDetails = () => {
                     <p>Number of quizes: {course.others_info?.total_quiz}</p>
                     <p className='text-xl my-5 text-purple-800 font-semibold'>Price: ${course.others_info?.Price} only</p>
                 </div>
-                <div className='mx-auto w-1/3 my-8 py-8 shadow-md'>
+                <div className='mx-auto w-1/2 md:w-1/3 my-8 py-8 shadow-md'>
                     <p className='text-xl'>topics:</p>
                     {Object.keys(course.course_details).map((keyName, i) => (
                         <li key={i}>
@@ -52,7 +52,7 @@ const CourseDetails = () => {
                 </div>
             </div>
             <div>
-                <button className='btn bg-purple-800 text-white'><Link to={`/checkout/${course._id}`}>GET PREMIUM ACCESS</Link></button>
+                <button className='btn bg-purple-800 text-white mb-10'><Link to={`/checkout/${course._id}`}>GET PREMIUM ACCESS</Link></button>
             </div>
         </div>
     );

@@ -62,10 +62,9 @@ const Header = () => {
                             </>
                     }
                 </div>
-                <div className=''>
-                    <span>Light</span>
+                <div className='mx-2'>
                 <input onClick={handleCheck} type="checkbox" className="toggle" />
-                <span>Dark</span>
+                <span>{`${isChecked ? 'Dark' : 'Light'}`}</span>
                 </div>
             </div>
         </div>
