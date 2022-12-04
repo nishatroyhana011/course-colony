@@ -59,7 +59,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className='my-6'>
             <form>
                 <p className='text-primary font-semibold text-2xl m-5'>Login Form</p>
                 <p className='text-red-600'>{error}</p>

@@ -22,35 +22,28 @@ const Register = () => {
         if (/\S+@\S+\.\S+/.test(event.target.value)) {
             setEmail(event.target.value)
         }else{
-            setError('please Enter valid Email')
+            setError('Wrong email pattern. please Enter valid Email')
         }
     }
     const handlePassword = (event) => {
-        if(/^(((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,})/.test(event.target.value)){
-            setPassword(event.target.value)
-        }else{
-            setError('please Enter password containing 8 charactars or more')
-        }  
+        setPassword(event.target.value)  
     }
     const handleRegister = (event)=>{
         event.preventDefault();
-        if(name && photo && email && password){
-            createUser(email, password)
-            .then((res)=>{
-                Swal.fire("You can Login now")
-                userUpdate(name, photo)
-                navigate('/login');
-            })
-            .catch((error)=>{
-                console.log(error.errorMessage)
-            })
-        }else{
-            setError('All info needed')
-        }
+        createUser(email, password)
+        .then((res)=>{
+            Swal.fire("You can Login now")
+            userUpdate(name, photo)
+            navigate('/login');
+        })
+        .catch((error)=>{
+            setError('envalid email or password')
+        })
+    
     }
     
     return (
-        <form>
+        <form  className='my-6'>
             <p className='text-info font-semibold text-2xl m-5'>Registration form</p>
             <p className='text-red-600'>{error}</p>
             <div className='mx-auto container' action="">
@@ -73,8 +66,8 @@ const Register = () => {
                     <input onBlur={handleEmail} type="email" placeholder="Type here" className="input input-bordered w-full max-w-xs" required/>
                 </div>
                 <div className="form-control mx-auto  w-full max-w-xs">
-                    <label className="label">
-                        <span className="label-text">Password</span>
+                    <label className="label">                        
+                        <span className="text-sm">Please type 8 characters for password.</span>
                     </label>
                     <input onBlur={handlePassword} type="password" placeholder="Type here" className="input input-bordered w-full max-w-xs" required/>
                 </div>
