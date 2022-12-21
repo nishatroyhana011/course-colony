@@ -1,14 +1,18 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { Authcontext } from '../../../context/AuthProvider/AuthProvider';
 
 const Checkout = () => {
     const course = useLoaderData();
+    const {user} = useContext(Authcontext)
+
     return (
         <div>
             <p className='text-2xl text-purple-800 font-semibold my-10'>Checkout</p>
             <p className='text-lg font-semibold text-purple-800'>Course info</p>
             <div className="overflow-x-auto">
-                <table className="table w-1/2 mx-auto">
+                <table className="table mx-auto">
                     
                     <thead>
                         <tr>
@@ -28,13 +32,14 @@ const Checkout = () => {
                 <br />
                 <p className='text-lg font-semibold text-purple-800'>Student info</p>
             <div className="overflow-x-auto">
-                <table className="table w-1/2 mx-auto">
-                    <thead>
+                <table className="table mx-auto">
+                    
+                    <tbody>
                         <tr>
-                            <th>Course Name</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
+                            <td>{user.email}</td>
+                           
+                        </tr>   
+                    </tbody>
                 </table>
             </div>
             </div>

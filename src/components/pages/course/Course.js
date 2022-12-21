@@ -11,8 +11,8 @@ const Course = ({ course }) => {
                 <div className="card-body">
                     <h2 className="card-title">
                         {title}
-                        <div className="badge bg-purple-500 p-3">{level}</div>
                     </h2>
+                    <div className="badge bg-purple-500 p-3">{level}</div>
                     <p className='text-left'>{description}</p>
                     <div className="card-actions justify-between">
                         <span className='text-purple-800 font-semibold text-lg'>By: {author.name}</span>
