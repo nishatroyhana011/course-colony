@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const PopularCourses = () => {
     return (
         <div>
-            <p className="text-5xl font-bold mt-16">Popular Courses</p>
+            <p className="text-4xl md:text-5xl font-bold mt-16">Popular Courses</p>
             <div className='mx-10 my-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                 <div className="card  bg-base-100 shadow-xl image-full">
                     <figure><img src="https://media.istockphoto.com/photos/python-programming-language-concept-woman-developer-with-her-hand-picture-id1189210101?s=612x612" alt="Shoes" /></figure>
